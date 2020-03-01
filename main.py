@@ -45,7 +45,6 @@ for item_contact_list in contacts_list:
 
 # удаление "дубликатов"
 extended_dict = {}
-i = 0
 for i in range(len(contacts_list)):
     key_name = contacts_list[i][0] + " " + contacts_list[i][1]
     extended_dict[key_name] = merge_lists(extended_dict.get(key_name, get_empty_list(len(contacts_list[0]))), contacts_list[i])
