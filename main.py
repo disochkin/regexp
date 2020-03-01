@@ -21,6 +21,7 @@ def get_empty_list(count):
 
 # исправление формата телефонного номера к виду +7(999)999-99-99 доб.9999;
 def fix_number_format(number):
+    number = re.sub(r"^[\7|8]", "7", number)
     digits = re.sub(r'\D', "", number)
     result = "+{}({}{}{}){}{}{}-{}{}-{}{}".format(*digits)
     if digits[11:]:
@@ -56,12 +57,9 @@ for key in extended_dict.keys():
 
 # приводим телефонный номер к формату +7(999)999-99-99 доб.9999;
 for i in range(len(contacts_list)):
-    if i > 1:
-        print(contacts_list[i][5])
-        print(fix_number_format(contacts_list[i][5]))
+    if i > 0:
         contacts_list[i][5] = fix_number_format(contacts_list[i][5])
 
-print(contacts_list)
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
 with open("phonebook.csv", "w") as f:
